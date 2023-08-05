@@ -1,0 +1,13 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "h3": "^1.7.1",
+    "valibot": "^0.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
