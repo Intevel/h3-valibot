@@ -39,8 +39,8 @@
     "unbuild": "^0.7.4",
     "vitest": "^0.17.0"
   },
-  "peerDependencies": {
-    "h3": "^1.7.1",
-    "valibot": "^0.9.0"
+  "dependencies": {
+    "h3": "^1.8.1",
+    "valibot": "^0.13.1"
   }
 }
