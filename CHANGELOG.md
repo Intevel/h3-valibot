@@ -1,4 +1,15 @@
 
+## v0.0.3
+
+
+### 🩹 Fixes
+
+  - Exports (31e866a)
+
+### ❤️  Contributors
+
+- Conner Bachmann
+
 ## v0.0.2
 
 
