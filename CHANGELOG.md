@@ -1,4 +1,15 @@
 
+## v0.0.4
+
+
+### 🚀 Enhancements
+
+  - Add useValidateQuery function (2b57f43)
+
+### ❤️  Contributors
+
+- Conner Bachmann
+
 ## v0.0.3
 
 
