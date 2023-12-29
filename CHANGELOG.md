@@ -1,4 +1,15 @@
 
+## v0.0.5
+
+
+### 🚀 Enhancements
+
+  - Upgrade dependencies (f805732)
+
+### ❤️  Contributors
+
+- Conner Bachmann
+
 ## v0.0.4
 
 
