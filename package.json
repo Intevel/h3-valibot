@@ -41,6 +41,6 @@
   },
   "dependencies": {
     "h3": "^1.8.1",
-    "valibot": "^0.13.1"
+    "valibot": "^0.25.0"
   }
 }
