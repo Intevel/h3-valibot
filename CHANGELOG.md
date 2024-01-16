@@ -1,4 +1,15 @@
 
+## v0.0.6
+
+
+### 🩹 Fixes
+
+  - Missing export (294ab40)
+
+### ❤️  Contributors
+
+- Conner Bachmann
+
 ## v0.0.5
 
 
