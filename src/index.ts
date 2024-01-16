@@ -1,1 +1,1 @@
-export { useValidatedBody, useValidatedParams } from './parsers';
+export { useValidatedBody, useValidatedParams, useValidatedQuery } from './parsers';
