@@ -1,6 +1,6 @@
 {
   "name": "h3-valibot",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "🤖 Schema validation for h3 using Valibot",
   "license": "MIT",
   "author": "Conner Bachmann <github@conner-bachmann.de>",
@@ -27,7 +27,7 @@
   "scripts": {
     "build": "unbuild",
     "lint": "eslint --ext .ts .",
-    "release": "yarn build && changelogen --release && git push --follow-tags && yarn publish",
+    "release": "yarn build && changelogen --patch && git push --follow-tags && yarn publish",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
