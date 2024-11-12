@@ -1,6 +1,5 @@
-import * as v from 'valibot'
 import { describe, expect, it } from 'vitest'
-import { vh } from '../src'
+import { v, vh } from '../src'
 
 describe('boolAsString', () => {
   it('parses true as string', () => {
