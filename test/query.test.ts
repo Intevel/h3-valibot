@@ -1,7 +1,7 @@
 import type { App } from 'h3'
 import type { Test } from 'supertest'
 import type TestAgent from 'supertest/lib/agent'
-import { createApp, eventHandler, toNodeListener } from 'h3'
+import { createApp, defineEventHandler, toNodeListener } from 'h3'
 import supertest from 'supertest'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { useSafeValidatedQuery, useValidatedQuery, v } from '../src'
@@ -20,7 +20,7 @@ describe('useValidatedQuery', () => {
   })
 
   it('returns 200 OK if query matches validation schema', async () => {
-    app.use('/validate', eventHandler(event => useValidatedQuery(event, querySchema)))
+    app.use('/validate', defineEventHandler(event => useValidatedQuery(event, querySchema)))
 
     const res = await request.get('/validate?required')
 
@@ -29,7 +29,7 @@ describe('useValidatedQuery', () => {
   })
 
   it('throws 400 Bad Request if query does not match validation schema', async () => {
-    app.use('/validate', eventHandler(event => useValidatedQuery(event, querySchema)))
+    app.use('/validate', defineEventHandler(event => useValidatedQuery(event, querySchema)))
 
     const res = await request.get('/validate')
 
@@ -38,7 +38,7 @@ describe('useValidatedQuery', () => {
   })
 
   it('doesn\'t throw 400 Bad Request if query does not match validation schema', async () => {
-    app.use('/validate', eventHandler(event => useSafeValidatedQuery(event, querySchema)))
+    app.use('/validate', defineEventHandler(event => useSafeValidatedQuery(event, querySchema)))
 
     const res = await request.get('/validate')
 

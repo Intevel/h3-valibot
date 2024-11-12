@@ -1,7 +1,7 @@
 import type { App } from 'h3'
 import type { Test } from 'supertest'
 import type TestAgent from 'supertest/lib/agent'
-import { createApp, eventHandler, toNodeListener } from 'h3'
+import { createApp, defineEventHandler, toNodeListener } from 'h3'
 import supertest from 'supertest'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { useSafeValidatedBody, useValidatedBody, v } from '../src'
@@ -21,7 +21,7 @@ describe('useValidatedBody', () => {
   })
 
   it('returns 200 OK if body matches validation schema', async () => {
-    app.use('/validate', eventHandler(event => useValidatedBody(event, bodySchema)))
+    app.use('/validate', defineEventHandler(event => useValidatedBody(event, bodySchema)))
 
     const res = await request.post('/validate').send({ required: true })
 
@@ -30,7 +30,7 @@ describe('useValidatedBody', () => {
   })
 
   it('throws 400 Bad Request if body does not match validation schema', async () => {
-    app.use('/validate', eventHandler(event => useValidatedBody(event, bodySchema)))
+    app.use('/validate', defineEventHandler(event => useValidatedBody(event, bodySchema)))
 
     const res = await request.post('/validate').send({})
 
@@ -39,7 +39,7 @@ describe('useValidatedBody', () => {
   })
 
   it('doesn\'t throw 400 Bad Request if body does not match validation schema', async () => {
-    app.use('/validate', eventHandler(event => useSafeValidatedBody(event, bodySchema)))
+    app.use('/validate', defineEventHandler(event => useSafeValidatedBody(event, bodySchema)))
 
     const res = await request.post('/validate').send({})
 
