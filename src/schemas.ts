@@ -25,9 +25,9 @@ export const boolAsString = v.pipe(
  * ```
  */
 export const checkboxAsString = v.optional(v.pipe(
-  v.literal('on'),
+  v.picklist(['on', 'off']),
   v.transform(value => value === 'on'),
-))
+), 'off')
 
 /**
  * Valibot schema to parse strings that are integers.
