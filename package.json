@@ -1,16 +1,21 @@
 {
   "name": "h3-valibot",
+  "type": "module",
   "version": "0.0.7",
   "description": "🤖 Schema validation for h3 using Valibot",
-  "license": "MIT",
   "author": "Conner Bachmann <github@conner-bachmann.de>",
+  "license": "MIT",
+  "keywords": [
+    "valibot",
+    "h3",
+    "validation"
+  ],
   "sideEffects": false,
-  "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     }
   },
   "main": "./dist/index.cjs",
@@ -19,29 +24,29 @@
   "files": [
     "dist"
   ],
-  "keywords": [
-    "valibot",
-    "h3",
-    "validation"
-  ],
   "scripts": {
     "build": "unbuild",
-    "lint": "eslint --ext .ts .",
+    "lint": "eslint .",
     "release": "yarn build && changelogen --patch && git push --follow-tags && yarn publish",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "@types/node": "^17.0.23",
-    "@typescript-eslint/eslint-plugin": "^5.30.5",
-    "@typescript-eslint/parser": "^5.30.5",
-    "changelogen": "^0.3.5",
-    "eslint": "^8.12.0",
-    "typescript": "^4.6.3",
-    "unbuild": "^0.7.4",
-    "vitest": "^0.17.0"
   },
   "dependencies": {
     "h3": "^1.13.0",
-    "valibot": "^0.42.1"
+    "valibot": "^1.0.0-beta.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "3.8.0",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "@types/node": "^20",
+    "@types/serve-handler": "6.1.4",
+    "@typescript-eslint/eslint-plugin": "8.14.0",
+    "@typescript-eslint/parser": "8.14.0",
+    "changelogen": "^0.5.7",
+    "eslint": "^9.14.0",
+    "typescript": "^5.6.3",
+    "unbuild": "latest",
+    "vite": "5.4.10",
+    "vitest": "^2.1.4"
   }
 }
