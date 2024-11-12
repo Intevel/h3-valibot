@@ -44,7 +44,7 @@ export async function useValidatedQuery<
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
  */
-export async function useSafeValidatedQuery<
+export function useSafeValidatedQuery<
   TInput,
   TOutput,
   TIssue extends v.BaseIssue<unknown>,
@@ -52,14 +52,8 @@ export async function useSafeValidatedQuery<
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
-  try {
-    const query = getQuery(event)
-    const parsed = await v.safeParseAsync(schema, query)
-    return parsed
-  }
-  catch (error) {
-    throw createBadRequest(error)
-  }
+  const query = getQuery(event)
+  return v.safeParseAsync(schema, query)
 }
 
 /**
@@ -98,14 +92,8 @@ export async function useSafeValidatedBody<
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
-  try {
-    const body = await readBody(event)
-    const parsed = await v.safeParseAsync(schema, body)
-    return parsed
-  }
-  catch (error) {
-    throw createBadRequest(error)
-  }
+  const body = await readBody(event)
+  return v.safeParseAsync(schema, body)
 }
 
 /**
@@ -136,7 +124,7 @@ export async function useValidatedParams<
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
  */
-export async function useSafeValidatedParams<
+export function useSafeValidatedParams<
   TInput,
   TOutput,
   TIssue extends v.BaseIssue<unknown>,
@@ -144,12 +132,6 @@ export async function useSafeValidatedParams<
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
-  try {
-    const params = getRouterParams(event)
-    const parsed = await v.safeParseAsync(schema, params)
-    return parsed
-  }
-  catch (error) {
-    throw createBadRequest(error)
-  }
+  const params = getRouterParams(event)
+  return v.safeParseAsync(schema, params)
 }
