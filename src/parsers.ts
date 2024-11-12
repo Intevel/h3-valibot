@@ -40,6 +40,29 @@ export async function useValidatedQuery<
 }
 
 /**
+ * Parse and validate request query from event handler. Throws an error if validation fails.
+ * @param event - A H3 event object.
+ * @param schema - A Valibot Schema
+ */
+export async function useSafeValidatedQuery<
+  TInput,
+  TOutput,
+  TIssue extends v.BaseIssue<unknown>,
+>(
+  event: H3Event,
+  schema: VSchema<TInput, TOutput, TIssue>,
+): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
+  try {
+    const query = getQuery(event)
+    const parsed = await v.safeParseAsync(schema, query)
+    return parsed
+  }
+  catch (error) {
+    throw createBadRequest(error)
+  }
+}
+
+/**
  * Parse and validate request body from event handler. Throws an error if validation fails.
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
@@ -63,6 +86,29 @@ export async function useValidatedBody<
 }
 
 /**
+ * Parse and validate request body from event handler. Throws an error if validation fails.
+ * @param event - A H3 event object.
+ * @param schema - A Valibot Schema
+ */
+export async function useSafeValidatedBody<
+  TInput,
+  TOutput,
+  TIssue extends v.BaseIssue<unknown>,
+>(
+  event: H3Event,
+  schema: VSchema<TInput, TOutput, TIssue>,
+): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
+  try {
+    const body = await readBody(event)
+    const parsed = await v.safeParseAsync(schema, body)
+    return parsed
+  }
+  catch (error) {
+    throw createBadRequest(error)
+  }
+}
+
+/**
  * Parse and validate request params from event handler. Throws an error if validation fails.
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
@@ -78,6 +124,29 @@ export async function useValidatedParams<
   try {
     const params = getRouterParams(event)
     const parsed = await v.parseAsync(schema, params)
+    return parsed
+  }
+  catch (error) {
+    throw createBadRequest(error)
+  }
+}
+
+/**
+ * Parse and validate request params from event handler. Throws an error if validation fails.
+ * @param event - A H3 event object.
+ * @param schema - A Valibot Schema
+ */
+export async function useSafeValidatedParams<
+  TInput,
+  TOutput,
+  TIssue extends v.BaseIssue<unknown>,
+>(
+  event: H3Event,
+  schema: VSchema<TInput, TOutput, TIssue>,
+): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
+  try {
+    const params = getRouterParams(event)
+    const parsed = await v.safeParseAsync(schema, params)
     return parsed
   }
   catch (error) {
