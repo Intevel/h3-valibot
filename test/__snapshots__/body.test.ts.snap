@@ -1,0 +1,60 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useValidatedBody > doesn't throw 400 Bad Request if body does not match validation schema 1`] = `
+{
+  "issues": [
+    {
+      "expected": "boolean",
+      "kind": "schema",
+      "message": "Invalid type: Expected boolean but received undefined",
+      "path": [
+        {
+          "input": {},
+          "key": "required",
+          "origin": "value",
+          "type": "object",
+        },
+      ],
+      "received": "undefined",
+      "type": "boolean",
+    },
+  ],
+  "output": {},
+  "success": false,
+  "typed": false,
+}
+`;
+
+exports[`useValidatedBody > returns 200 OK if body matches validation schema 1`] = `
+{
+  "required": true,
+}
+`;
+
+exports[`useValidatedBody > throws 400 Bad Request if body does not match validation schema 1`] = `
+{
+  "data": {
+    "issues": [
+      {
+        "expected": "boolean",
+        "kind": "schema",
+        "message": "Invalid type: Expected boolean but received undefined",
+        "path": [
+          {
+            "input": {},
+            "key": "required",
+            "origin": "value",
+            "type": "object",
+          },
+        ],
+        "received": "undefined",
+        "type": "boolean",
+      },
+    ],
+    "name": "ValiError",
+  },
+  "stack": [],
+  "statusCode": 400,
+  "statusMessage": "Bad Request",
+}
+`;
