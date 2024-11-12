@@ -40,7 +40,7 @@ export async function useValidatedQuery<
 }
 
 /**
- * Parse and validate request query from event handler. Throws an error if validation fails.
+ * Parse and validate request query from event handler. Doesn't throw if validation fails.
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
  */
@@ -86,7 +86,7 @@ export async function useValidatedBody<
 }
 
 /**
- * Parse and validate request body from event handler. Throws an error if validation fails.
+ * Parse and validate request body from event handler. Doesn't throw if validation fails.
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
  */
@@ -132,7 +132,7 @@ export async function useValidatedParams<
 }
 
 /**
- * Parse and validate request params from event handler. Throws an error if validation fails.
+ * Parse and validate request params from event handler. Doesn't throw if validation fails.
  * @param event - A H3 event object.
  * @param schema - A Valibot Schema
  */
