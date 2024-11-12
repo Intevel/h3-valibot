@@ -3,19 +3,19 @@
     "target": "ES2021",
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "declaration": true,
     "types": [
       "node"
-    ]
+    ],
+    "strict": true,
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "declaration": true,
+    "outDir": "dist",
+    "esModuleInterop": true
   },
   "include": [
     "src"
