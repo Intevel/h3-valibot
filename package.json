@@ -30,7 +30,7 @@
     "lint": "eslint .",
     "release": "yarn build && changelogen --patch && git push --follow-tags && yarn publish",
     "test": "pnpm lint && pnpm test:types && vitest --run",
-    "typecheck": "tsc --noEmit"
+    "test:types": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "h3": "^1.13.0",
