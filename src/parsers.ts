@@ -28,10 +28,11 @@ export async function useValidatedQuery<
 >(
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<TOutput> {
   try {
     const query = getQuery(event)
-    const parsed = await v.parseAsync(schema, query)
+    const parsed = await v.parseAsync(schema, query, config)
     return parsed
   }
   catch (error) {
@@ -51,9 +52,10 @@ export function useSafeValidatedQuery<
 >(
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
   const query = getQuery(event)
-  return v.safeParseAsync(schema, query)
+  return v.safeParseAsync(schema, query, config)
 }
 
 /**
@@ -68,10 +70,11 @@ export async function useValidatedBody<
 >(
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<TOutput> {
   try {
     const body = await readBody(event)
-    const parsed = await v.parseAsync(schema, body)
+    const parsed = await v.parseAsync(schema, body, config)
     return parsed
   }
   catch (error) {
@@ -91,9 +94,10 @@ export async function useSafeValidatedBody<
 >(
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
   const body = await readBody(event)
-  return v.safeParseAsync(schema, body)
+  return v.safeParseAsync(schema, body, config)
 }
 
 /**
@@ -108,10 +112,11 @@ export async function useValidatedParams<
 >(
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<TOutput> {
   try {
     const params = getRouterParams(event)
-    const parsed = await v.parseAsync(schema, params)
+    const parsed = await v.parseAsync(schema, params, config)
     return parsed
   }
   catch (error) {
@@ -131,7 +136,8 @@ export function useSafeValidatedParams<
 >(
   event: H3Event,
   schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
   const params = getRouterParams(event)
-  return v.safeParseAsync(schema, params)
+  return v.safeParseAsync(schema, params, config)
 }
