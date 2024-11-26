@@ -39,8 +39,8 @@ export const checkboxAsString = v.optional(v.pipe(
  */
 export const intAsString = v.pipe(
   v.string(),
-  v.regex(/^-?\d+$/, 'Must be an integer string'),
-  v.transform(val => Number.parseInt(val, 10)),
+  v.transform(Number),
+  v.integer('Must be an integer string'),
 )
 
 /**
@@ -53,6 +53,6 @@ export const intAsString = v.pipe(
  */
 export const numAsString = v.pipe(
   v.string(),
-  v.regex(/^-?(?:\d+(?:\.\d+)?|\.\d+)$/, 'Must be a number string'),
+  v.decimal('Must be a number string'),
   v.transform(Number),
 )
