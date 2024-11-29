@@ -1,7 +1,7 @@
 import { createError, getQuery, getRouterParams, type H3Event, readBody } from 'h3'
 import * as v from 'valibot'
 
-type VSchema<TInput, TOutput, TIssue extends v.BaseIssue<unknown>> =
+export type VSchema<TInput, TOutput, TIssue extends v.BaseIssue<unknown>> =
   | v.BaseSchema<TInput, TOutput, TIssue>
   | v.BaseSchemaAsync<TInput, TOutput, TIssue>
 

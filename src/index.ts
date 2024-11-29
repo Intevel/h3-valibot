@@ -34,6 +34,7 @@ export {
   useValidatedBody,
   useValidatedParams,
   useValidatedQuery,
+  type VSchema,
 } from './parsers'
 
 export * as v from 'valibot'
