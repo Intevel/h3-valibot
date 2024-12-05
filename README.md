@@ -21,15 +21,15 @@ yarn add h3-valibot
 ## Validation
 
 ```ts router.ts
-import { useValidatedBody } from 'h3-valibot'
+import { useValidatedBody, v } from 'h3-valibot'
 
 import { createApp, createRouter, eventHandler } from "h3";
 import { email, minLength, string, objectAsync } from 'valibot';
 
 export const app = createApp();
-const LoginSchema = objectAsync({
-    email: string([email()]),
-    password: string([minLength(8)]),
+const LoginSchema = v.object({
+    email: v.pipe(v.string(), v.email()),
+    password: v.pipe(v.string(), v.minLength(8)),
  });
 
 const router = createRouter();
@@ -49,32 +49,32 @@ h3-valibot throws an `ValiError` when the validation fails:
 Exampl
 ```json
 {
-    "statusCode": 400,
-    "statusMessage": "Bad Request",
-    "stack": [],
-    "data": {
-        "issues": [
-            {
-                "validation": "email",
-                "origin": "value",
-                "message": "Invalid email",
-                "input": "github@conner-bachmande",
-                "path": [
-                    {
-                        "schema": "object",
-                        "input": {
-                            "email": "github@conner-bachmande",
-                            "password": "12345678"
-                        },
-                        "key": "email",
-                        "value": "github@conner-bachmande"
-                    }
-                ],
-                "reason": "string"
-            }
+  "statusCode": 400,
+  "statusMessage": "Bad Request",
+  "stack": [],
+  "data": {
+    "issues": [
+      {
+        "validation": "email",
+        "origin": "value",
+        "message": "Invalid email",
+        "input": "github@conner-bachmande",
+        "path": [
+          {
+            "schema": "object",
+            "input": {
+              "email": "github@conner-bachmande",
+              "password": "12345678"
+            },
+            "key": "email",
+            "value": "github@conner-bachmande"
+          }
         ],
-        "name": "ValiError"
-    }
+        "reason": "string"
+      }
+    ],
+    "name": "ValiError"
+  }
 }
 ```
 
