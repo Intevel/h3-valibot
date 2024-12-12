@@ -11,6 +11,11 @@
     "validation"
   ],
   "sideEffects": false,
+  "build": {
+    "externals": [
+      "valibot"
+    ]
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
