@@ -1,5 +1,5 @@
 // Original code by https://github.com/rileytomasek/zodix/blob/31bd5f2708f2eec4d0522201710dfc5ef887a16e/src/schemas.ts
-import * as v from 'Valibot'
+import * as v from 'valibot'
 
 /**
  * Valibot schema to parse strings that are booleans.
