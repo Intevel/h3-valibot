@@ -6,7 +6,7 @@ export default defineNuxtModule({
     name: 'h3-valibot',
   },
   defaults: {},
-  async setup(_options, _nuxt) {
+  async setup(_options, nuxt) {
     addServerImports([
       {
         name: 'useSafeValidatedBody',
@@ -41,5 +41,16 @@ export default defineNuxtModule({
         from: 'h3-valibot',
       },
     ])
+
+    nuxt.hook('imports:extend', (imports) => {
+      imports.push({
+        name: 'vh',
+        from: 'h3-valibot',
+      })
+      imports.push({
+        name: 'v',
+        from: 'h3-valibot',
+      })
+    })
   },
 })
