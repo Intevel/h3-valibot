@@ -56,3 +56,14 @@ export const numAsString = v.pipe(
   v.decimal('Must be a number string'),
   v.transform(Number),
 )
+
+/**
+ * Valibot schema to parse strings that are valid UUID.
+ * @example
+ * ```ts
+ * v.parse(vh.uuid, '2') -> throws an error
+ */
+export const uuid = v.pipe(
+  v.string(),
+  v.uuid(),
+)
