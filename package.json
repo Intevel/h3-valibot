@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "h3": "^1.13.0",
-    "valibot": "^1.0.0-beta.3"
+    "valibot": "^1.0.0-beta.9"
   },
   "devDependencies": {
     "@antfu/eslint-config": "3.8.0",
