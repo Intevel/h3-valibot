@@ -1,4 +1,4 @@
-import { addServerImports, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addServerImports, defineNuxtModule } from '@nuxt/kit'
 import '@nuxt/schema'
 
 export default defineNuxtModule({
@@ -7,41 +7,38 @@ export default defineNuxtModule({
   },
   defaults: {},
   async setup(_options, _nuxt) {
-    const { resolve } = createResolver(import.meta.url)
     addServerImports([
       {
         name: 'useSafeValidatedBody',
-        from: resolve('./core'),
+        from: 'h3-valibot',
       },
       {
         name: 'useSafeValidatedParams',
-        from: resolve('./core'),
+        from: 'h3-valibot',
       },
       {
         name: 'useSafeValidatedQuery',
-        from: resolve('./core'),
+        from: 'h3-valibot',
       },
       {
         name: 'useValidatedBody',
-        from: resolve('./core'),
+        from: 'h3-valibot',
       },
       {
         name: 'useValidatedParams',
-        from: resolve('./core'),
+        from: 'h3-valibot',
       },
       {
         name: 'useValidatedQuery',
-        from: resolve('./core'),
-      },
-    ])
-    addServerImports([
-      {
-        name: 'v',
-        from: resolve('./core'),
+        from: 'h3-valibot',
       },
       {
         name: 'vh',
-        from: resolve('./core'),
+        from: 'h3-valibot',
+      },
+      {
+        name: 'v',
+        from: 'h3-valibot',
       },
     ])
   },
