@@ -78,6 +78,19 @@ Exampl
 }
 ```
 
+## Nuxt auto-imports
+
+This library supports Nuxt's auto-imports, just add it in your `nuxt.config.ts`:
+
+```ts
+export default defineNuxtConfig({
+  modules: [
+    // ...
+    'h3-valibot/nuxt',
+  ],
+})
+```
+
 ## License
 
 Published under MIT - Made with ❤️ by Conner Bachmann

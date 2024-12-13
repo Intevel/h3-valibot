@@ -21,6 +21,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
+      "import": "./dist/nuxt.mjs",
+      "require": "./dist/nuxt.cjs"
     }
   },
   "main": "./dist/index.cjs",
@@ -37,7 +42,21 @@
     "test": "pnpm lint && pnpm test:types && vitest --run",
     "test:types": "tsc --noEmit --skipLibCheck"
   },
+  "peerDependencies": {
+    "@nuxt/kit": ">=3",
+    "@nuxt/schema": ">=3"
+  },
+  "peerDependenciesMeta": {
+    "@nuxt/kit": {
+      "optional": true
+    },
+    "@nuxt/schema": {
+      "optional": true
+    }
+  },
   "dependencies": {
+    "@nuxt/kit": "^3.14.1592",
+    "@nuxt/schema": "^3.14.1592",
     "h3": "^1.13.0",
     "valibot": "^1.0.0-beta.9"
   },
