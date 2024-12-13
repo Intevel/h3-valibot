@@ -3,6 +3,7 @@ import {
   checkboxAsString,
   intAsString,
   numAsString,
+  uuid,
 } from './schemas'
 
 export const vh = {
@@ -10,6 +11,7 @@ export const vh = {
   checkboxAsString,
   intAsString,
   numAsString,
+  uuid,
 }
 
 export {

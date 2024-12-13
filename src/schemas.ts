@@ -1,5 +1,5 @@
 // Original code by https://github.com/rileytomasek/zodix/blob/31bd5f2708f2eec4d0522201710dfc5ef887a16e/src/schemas.ts
-import * as v from 'Valibot'
+import * as v from 'valibot'
 
 /**
  * Valibot schema to parse strings that are booleans.
@@ -55,4 +55,15 @@ export const numAsString = v.pipe(
   v.string(),
   v.decimal('Must be a number string'),
   v.transform(Number),
+)
+
+/**
+ * Valibot schema to parse strings that are valid UUID.
+ * @example
+ * ```ts
+ * v.parse(vh.uuid, '2') -> throws an error
+ */
+export const uuid = v.pipe(
+  v.string(),
+  v.uuid(),
 )

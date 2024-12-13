@@ -11,6 +11,11 @@
     "validation"
   ],
   "sideEffects": false,
+  "build": {
+    "externals": [
+      "valibot"
+    ]
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -34,11 +39,10 @@
   },
   "dependencies": {
     "h3": "^1.13.0",
-    "valibot": "^1.0.0-beta.3"
+    "valibot": "^1.0.0-beta.9"
   },
   "devDependencies": {
     "@antfu/eslint-config": "3.8.0",
-    "@nuxtjs/eslint-config-typescript": "latest",
     "@types/node": "^20",
     "@types/serve-handler": "6.1.4",
     "@typescript-eslint/eslint-plugin": "8.14.0",

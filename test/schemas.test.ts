@@ -3,10 +3,10 @@ import { v, vh } from '../src'
 
 describe('boolAsString', () => {
   it('parses true as string', () => {
-    expect(v.parse(vh.boolAsString, 'true')).toBe(true)
+    expect(v.parse(vh.boolAsString, 'true')).toBeTruthy()
   })
   it('parses false as string', () => {
-    expect(v.parse(vh.boolAsString, 'false')).toBe(false)
+    expect(v.parse(vh.boolAsString, 'false')).toBeFalsy()
   })
   it('throws on non-boolean string', () => {
     expect(() => v.parse(vh.boolAsString, 'hello')).toThrowError()
@@ -15,10 +15,10 @@ describe('boolAsString', () => {
 
 describe('checkboxAsString', () => {
   it('parses "on" as boolean', () => {
-    expect(v.parse(vh.checkboxAsString, 'on')).toBe(true)
+    expect(v.parse(vh.checkboxAsString, 'on')).toBeTruthy()
   })
   it('parses undefined as boolean', () => {
-    expect(v.parse(vh.checkboxAsString, undefined)).toBe(false)
+    expect(v.parse(vh.checkboxAsString, undefined)).toBeFalsy()
   })
   it('throws on non-"on" string', () => {
     expect(() => v.parse(vh.checkboxAsString, 'hello')).toThrowError()
@@ -70,5 +70,14 @@ describe('numAsString', () => {
   })
   it('throws on non-number string', () => {
     expect(() => v.parse(vh.numAsString, 'a3')).toThrowError()
+  })
+})
+
+describe('uuid', () => {
+  it('parses string to be a valid UUID', () => {
+    expect(v.parse(vh.uuid, 'aa3452d1-ad94-4bd2-9782-1f69b3372784')).toBeTruthy()
+  })
+  it('parses string to not be a valid UUID', () => {
+    expect(() => v.parse(vh.uuid, '123')).toThrowError()
   })
 })

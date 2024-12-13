@@ -24,7 +24,7 @@ describe('useValidatedBody', () => {
     const res = await request.post('/validate').send({ required: true })
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toEqual({ required: true })
   })
 
   it('throws 400 Bad Request if body does not match validation schema', async () => {
@@ -33,7 +33,33 @@ describe('useValidatedBody', () => {
     const res = await request.post('/validate').send({})
 
     expect(res.status).toEqual(400)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toMatchInlineSnapshot(`
+      {
+        "data": {
+          "issues": [
+            {
+              "expected": "boolean",
+              "kind": "schema",
+              "message": "Invalid type: Expected boolean but received undefined",
+              "path": [
+                {
+                  "input": {},
+                  "key": "required",
+                  "origin": "value",
+                  "type": "object",
+                },
+              ],
+              "received": "undefined",
+              "type": "boolean",
+            },
+          ],
+          "name": "ValiError",
+        },
+        "stack": [],
+        "statusCode": 400,
+        "statusMessage": "Bad Request",
+      }
+    `)
   })
 
   it('doesn\'t throw 400 Bad Request if body does not match validation schema', async () => {
@@ -42,6 +68,6 @@ describe('useValidatedBody', () => {
     const res = await request.post('/validate').send({})
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toEqual(v.safeParse(bodySchema, {}))
   })
 })

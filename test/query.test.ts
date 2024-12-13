@@ -23,7 +23,7 @@ describe('useValidatedQuery', () => {
     const res = await request.get('/validate?required')
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toEqual({ required: '' })
   })
 
   it('throws 400 Bad Request if query does not match validation schema', async () => {
@@ -32,7 +32,33 @@ describe('useValidatedQuery', () => {
     const res = await request.get('/validate')
 
     expect(res.status).toEqual(400)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toMatchInlineSnapshot(`
+      {
+        "data": {
+          "issues": [
+            {
+              "expected": "string",
+              "kind": "schema",
+              "message": "Invalid type: Expected string but received undefined",
+              "path": [
+                {
+                  "input": {},
+                  "key": "required",
+                  "origin": "value",
+                  "type": "object",
+                },
+              ],
+              "received": "undefined",
+              "type": "string",
+            },
+          ],
+          "name": "ValiError",
+        },
+        "stack": [],
+        "statusCode": 400,
+        "statusMessage": "Bad Request",
+      }
+    `)
   })
 
   it('doesn\'t throw 400 Bad Request if query does not match validation schema', async () => {
@@ -41,6 +67,6 @@ describe('useValidatedQuery', () => {
     const res = await request.get('/validate')
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toEqual(v.safeParse(querySchema, {}))
   })
 })

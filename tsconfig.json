@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "module": "CommonJS",
+    "target": "es2022",
+    "module": "Preserve",
     "moduleResolution": "Node",
     "types": [
       "node"
@@ -19,5 +19,9 @@
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }

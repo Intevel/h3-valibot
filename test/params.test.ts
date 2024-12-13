@@ -2,7 +2,7 @@ import type { App, Router } from 'h3'
 import { createApp, createRouter, defineEventHandler, toNodeListener } from 'h3'
 import supertest from 'supertest'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { useSafeValidatedParams, useValidatedParams, v } from '../src'
+import { useSafeValidatedParams, useValidatedParams, v, vh } from '../src'
 
 describe('useValidatedParams', () => {
   let app: App
@@ -26,7 +26,7 @@ describe('useValidatedParams', () => {
     const res = await request.get('/validate/sandros94')
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toEqual({ name: 'sandros94' })
   })
 
   it('throws 400 Bad Request if params does not match validation schema', async () => {
@@ -35,15 +35,51 @@ describe('useValidatedParams', () => {
     const res = await request.get('/validate')
 
     expect(res.status).toEqual(404)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toEqual({
+      stack: [],
+      statusCode: 404,
+      statusMessage: 'Cannot find any path matching /validate.',
+    })
   })
 
   it('doesn\'t throw 400 Bad Request if params does not match validation schema', async () => {
-    router.get('/validate/:name', defineEventHandler(event => useSafeValidatedParams(event, paramsSchema)))
+    router.get('/validate/:id', defineEventHandler(event => useSafeValidatedParams(event, v.object({
+      id: vh.uuid,
+    }))))
 
-    const res = await request.get('/validate/2') // TODO: this is not actually correct
+    const res = await request.get('/validate/2')
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchSnapshot()
+    expect(res.body).toMatchInlineSnapshot(`
+      {
+        "issues": [
+          {
+            "expected": null,
+            "input": "2",
+            "kind": "validation",
+            "message": "Invalid UUID: Received "2"",
+            "path": [
+              {
+                "input": {
+                  "id": "2",
+                },
+                "key": "id",
+                "origin": "value",
+                "type": "object",
+                "value": "2",
+              },
+            ],
+            "received": ""2"",
+            "requirement": {},
+            "type": "uuid",
+          },
+        ],
+        "output": {
+          "id": "2",
+        },
+        "success": false,
+        "typed": true,
+      }
+    `)
   })
 })
