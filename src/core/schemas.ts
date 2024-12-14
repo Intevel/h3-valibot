@@ -67,3 +67,14 @@ export const uuid = v.pipe(
   v.string(),
   v.uuid(),
 )
+
+/**
+ * Valibot schema to parse strings that are valid Email.
+ * @example
+ * ```ts
+ * v.parse(vh.email, 'user@example.a') -> throws an error
+ */
+export const email = v.pipe(
+  v.string(),
+  v.email(),
+)
