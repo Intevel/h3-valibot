@@ -9,33 +9,30 @@ on:
     branches:
       - main
       - dev
+  workflow_dispatch:
 
 jobs:
   ci:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: [20]
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: checkout
-        uses: actions/checkout@master
-
-      - name: cache node_modules
-        uses: actions/cache@v1
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          path: node_modules
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/pnpm-lock.yaml')) }}
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
 
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm i
+        run: pnpm install
 
       - name: Test
         run: pnpm test

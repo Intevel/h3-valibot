@@ -1,4 +1,68 @@
-.vscode
+# .gitignore v1.4.0
+# https://gist.github.com/Sandros94/7f3dc1539c8f5905c495aa1bb417589c
+
+# Dependencies
 node_modules
+
+# Temp directories
+.temp
+.tmp
+.cache
+
+# Generated dirs
 dist
-types
+
+# Nuxt
+.nitro
+.nuxt
+.output
+.data
+.vercel_build_output
+.build-*
+.netlify
+
+# PNPM
+.pnpm-store
+
+# Yarn
+**/.yarn/cache
+**/.yarn/*state*
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Testing
+reports
+coverage
+*.lcov
+.nyc_output
+
+# Logs
+logs
+*.log
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Intellij idea
+*.iml
+.idea
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Project specific

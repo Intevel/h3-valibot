@@ -38,6 +38,7 @@
     "build": "unbuild",
     "dev": "vitest",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "release": "yarn build && changelogen --patch && git push --follow-tags && yarn publish",
     "test": "pnpm lint && pnpm test:types && vitest --run",
     "test:types": "tsc --noEmit --skipLibCheck"
