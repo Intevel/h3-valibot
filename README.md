@@ -23,7 +23,7 @@ yarn add h3-valibot
 ```ts router.ts
 import { useValidatedBody, v } from 'h3-valibot'
 
-import { createApp, createRouter, eventHandler } from "h3";
+import { createApp, createRouter, eventHandler } from 'h3';
 import { email, minLength, string, objectAsync } from 'valibot';
 
 export const app = createApp();
@@ -42,11 +42,51 @@ router.post("/login", eventHandler(async (event) => {
 );
 ```
 
+### Safe Validation
+
+```ts
+// same as above
+
+router.post("/login", eventHandler(async (event) => {
+    const body = await useSafeValidatedBody(event, LoginSchema);
+
+    if (!body.success) // do something
+
+    return body.output;
+  }),
+);
+```
+
+## Utils available
+
+`h3-valibot` provides a series of utils and their safe variants (don't throw an h3 error):
+
+- `useValidatedBody`
+- `useValidatedParams`
+- `useValidatedQuery`
+- `useSafeValidatedBody`
+- `useSafeValidatedParams`
+- `useSafeValidatedQuery`
+
+Each one accepts an h3 `event`, a valibot `schema` and optionally a parser `config`.
+
+### Helpers
+
+It also provides a set of helpers via `vh` object, mainly related to string validation, particularly useful during the prototyping phase of any project. For production use we still suggest to create dedicated schemas with project-related error messages and fallbacks.
+
+- `boolAsString`
+- `checkboxAsString`
+- `intAsString`
+- `numAsString`
+- `uuid`
+
+For more details or examples please refer to their JSdocs or [source code](/src/core/schemas.ts).
+
 ## Errors
 
-h3-valibot throws an `ValiError` when the validation fails:
+`h3-valibot` throws an `ValiError` when the validation fails:
 
-Exampl
+Example
 ```json
 {
   "statusCode": 400,
