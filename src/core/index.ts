@@ -1,6 +1,7 @@
 import {
   boolAsString,
   checkboxAsString,
+  email,
   intAsString,
   numAsString,
   uuid,
@@ -9,6 +10,7 @@ import {
 export const vh = {
   boolAsString,
   checkboxAsString,
+  email,
   intAsString,
   numAsString,
   uuid,
