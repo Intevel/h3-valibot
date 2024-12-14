@@ -59,11 +59,14 @@ router.post("/login", eventHandler(async (event) => {
 
 ## Utils available
 
-`h3-valibot` provides a series of utils, that each also comes in the `useSafeValidated*` variant for safe validation (doesn't throw an error):
+`h3-valibot` provides a series of utils and their safe variants (don't throw an h3 error):
 
 - `useValidatedBody`
 - `useValidatedParams`
 - `useValidatedQuery`
+- `useSafeValidatedBody`
+- `useSafeValidatedParams`
+- `useSafeValidatedQuery`
 
 Each one accepts an h3 `event`, a valibot `schema` and optionally a parser `config`.
 
