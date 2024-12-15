@@ -73,11 +73,32 @@ describe('numAsString', () => {
   })
 })
 
+describe('dateAsString', () => {
+  it('parses a valid date as string', () => {
+    expect(v.parse(vh.dateAsString, '1994-03-14')).toSatisfy(val => v.is(v.date(), val))
+  })
+  it('parses a valid datetime as string', () => {
+    expect(v.parse(vh.dateAsString, '1994-03-14T12:00')).toSatisfy(val => v.is(v.date(), val))
+  })
+  it('throws on non-date string', () => {
+    expect(() => v.parse(vh.dateAsString, '12:00')).toThrowError()
+  })
+})
+
 describe('uuid', () => {
   it('parses string to be a valid UUID', () => {
     expect(v.parse(vh.uuid, 'aa3452d1-ad94-4bd2-9782-1f69b3372784')).toBeTruthy()
   })
   it('parses string to not be a valid UUID', () => {
     expect(() => v.parse(vh.uuid, '123')).toThrowError()
+  })
+})
+
+describe('email', () => {
+  it('parses string to be a valid Email', () => {
+    expect(v.parse(vh.email, 'user@example.com')).toBeTruthy()
+  })
+  it('parses string to not be a valid Email', () => {
+    expect(() => v.parse(vh.email, 'user@example')).toThrowError()
   })
 })

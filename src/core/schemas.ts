@@ -58,6 +58,29 @@ export const numAsString = v.pipe(
 )
 
 /**
+ * Valibot schema to parse strings that are dates or datetime in ISO format.
+ * Use to parse <input type="date" /> and <input type="datetime-local" /> values.
+ * @example
+ * ```ts
+ * v.parse(dateAsString, '2022-01-01') -> new Date('2022-01-01')
+ * v.parse(dateAsString, '2022-01-01T12:00:00') -> new Date('2022-01-01T12:00:00')
+ * ```
+ */
+export const dateAsString = v.pipe(
+  v.union([
+    v.pipe(
+      v.string(),
+      v.isoDate(e => `Must be a date string in ISO format, received: ${e.received}`),
+    ),
+    v.pipe(
+      v.string(),
+      v.isoDateTime(e => `Must be a datetime string in ISO format, received: ${e.received}`),
+    ),
+  ]),
+  v.transform(d => new Date(d)),
+)
+
+/**
  * Valibot schema to parse strings that are valid UUID.
  * @example
  * ```ts
@@ -66,4 +89,15 @@ export const numAsString = v.pipe(
 export const uuid = v.pipe(
   v.string(),
   v.uuid(e => `Must be a valid UUID, received: ${e.received}`),
+)
+
+/**
+ * Valibot schema to parse strings that are valid Email.
+ * @example
+ * ```ts
+ * v.parse(vh.email, 'user@example') -> throws an error
+ */
+export const email = v.pipe(
+  v.string(),
+  v.email(e => `Must be a valid Email, received: ${e.received}`),
 )

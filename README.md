@@ -21,14 +21,14 @@ yarn add h3-valibot
 ## Validation
 
 ```ts router.ts
-import { useValidatedBody, v } from 'h3-valibot'
+import { useValidatedBody, v, vh } from 'h3-valibot'
 
 import { createApp, createRouter, eventHandler } from 'h3';
 import { email, minLength, string, objectAsync } from 'valibot';
 
 export const app = createApp();
 const LoginSchema = v.object({
-    email: v.pipe(v.string(), v.email()),
+    email: vh.email,
     password: v.pipe(v.string(), v.minLength(8)),
  });
 
@@ -76,8 +76,10 @@ It also provides a set of helpers via `vh` object, mainly related to string vali
 
 - `boolAsString`
 - `checkboxAsString`
+- `dateAsString`
 - `intAsString`
 - `numAsString`
+- `email`
 - `uuid`
 
 For more details or examples please refer to their JSdocs or [source code](/src/core/schemas.ts).
