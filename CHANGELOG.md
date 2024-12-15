@@ -1,3 +1,30 @@
+## v0.0.9
+
+### 🚀 Enhancements
+
+- **helpers:** Improve error messages ([d9a2270](https://github.com/Intevel/h3-valibot/commit/d9a2270))
+- New helpers ([#16](https://github.com/Intevel/h3-valibot/pull/16))
+
+### 🩹 Fixes
+
+- Ci ([e67b8c1](https://github.com/Intevel/h3-valibot/commit/e67b8c1))
+- **helpers:** Improve tree-shaking ([5a21ab4](https://github.com/Intevel/h3-valibot/commit/5a21ab4))
+
+### 📖 Documentation
+
+- Update readme ([86fffbd](https://github.com/Intevel/h3-valibot/commit/86fffbd))
+
+### 🏡 Chore
+
+- Changelog ([3617851](https://github.com/Intevel/h3-valibot/commit/3617851))
+- Use last valibot stable release ([8968470](https://github.com/Intevel/h3-valibot/commit/8968470))
+
+### ❤️ Contributors
+
+- Sandros94 ([@sandros94](http://github.com/sandros94))
+- Sandro Circi ([@sandros94](http://github.com/sandros94))
+- Conner Bachmann ([@Intevel](http://github.com/Intevel))
+
 ## v0.0.8
 
 ### 🚀 Enhancements
