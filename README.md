@@ -78,8 +78,8 @@ It also provides a set of helpers via `vh` object, mainly related to string vali
 - `checkboxAsString`
 - `intAsString`
 - `numAsString`
-- `uuid`
 - `email`
+- `uuid`
 
 For more details or examples please refer to their JSdocs or [source code](/src/core/schemas.ts).
 
