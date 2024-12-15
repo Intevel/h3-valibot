@@ -81,3 +81,12 @@ describe('uuid', () => {
     expect(() => v.parse(vh.uuid, '123')).toThrowError()
   })
 })
+
+describe('email', () => {
+  it('parses string to be a valid Email', () => {
+    expect(v.parse(vh.email, 'user@example.com')).toBeTruthy()
+  })
+  it('parses string to not be a valid Email', () => {
+    expect(() => v.parse(vh.email, 'user@example')).toThrowError()
+  })
+})

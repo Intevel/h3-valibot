@@ -79,6 +79,7 @@ It also provides a set of helpers via `vh` object, mainly related to string vali
 - `intAsString`
 - `numAsString`
 - `uuid`
+- `email`
 
 For more details or examples please refer to their JSdocs or [source code](/src/core/schemas.ts).
 
