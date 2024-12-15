@@ -57,7 +57,7 @@ describe('useValidatedParams', () => {
             "expected": null,
             "input": "2",
             "kind": "validation",
-            "message": "Invalid UUID: Received "2"",
+            "message": "Must be a valid UUID, received: "2"",
             "path": [
               {
                 "input": {
