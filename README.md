@@ -76,6 +76,7 @@ It also provides a set of helpers via `vh` object, mainly related to string vali
 
 - `boolAsString`
 - `checkboxAsString`
+- `dateAsString`
 - `intAsString`
 - `numAsString`
 - `email`
