@@ -63,7 +63,7 @@ export const numAsString = v.pipe(
  * @example
  * ```ts
  * v.parse(dateAsString, '2022-01-01') -> new Date('2022-01-01')
- * v.parse(datetimeAsString, '2022-01-01T12:00:00') -> new Date('2022-01-01T12:00:00')
+ * v.parse(dateAsString, '2022-01-01T12:00:00') -> new Date('2022-01-01T12:00:00')
  * ```
  */
 export const dateAsString = v.pipe(
