@@ -21,14 +21,14 @@ yarn add h3-valibot
 ## Validation
 
 ```ts router.ts
-import { useValidatedBody, v } from 'h3-valibot'
+import { useValidatedBody, v, vh } from 'h3-valibot'
 
 import { createApp, createRouter, eventHandler } from 'h3';
 import { email, minLength, string, objectAsync } from 'valibot';
 
 export const app = createApp();
 const LoginSchema = v.object({
-    email: v.pipe(v.string(), v.email()),
+    email: vh.email,
     password: v.pipe(v.string(), v.minLength(8)),
  });
 
