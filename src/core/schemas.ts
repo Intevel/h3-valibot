@@ -11,7 +11,7 @@ import * as v from 'valibot'
  */
 export const boolAsString = v.pipe(
   v.string(),
-  v.regex(/^(true|false)$/, 'Must be a boolean string ("true" or "false")'),
+  v.regex(/^(true|false)$/, e => `Must be a boolean string ("true" or "false"), received: ${e.received}`),
   v.transform(value => value === 'true'),
 )
 
@@ -25,7 +25,7 @@ export const boolAsString = v.pipe(
  * ```
  */
 export const checkboxAsString = v.optional(v.pipe(
-  v.picklist(['on', 'off']),
+  v.picklist(['on', 'off'], e => `Must be a checkbox data ("on" or "off"), received: ${e.received}`),
   v.transform(value => value === 'on'),
 ), 'off')
 
@@ -40,7 +40,7 @@ export const checkboxAsString = v.optional(v.pipe(
 export const intAsString = v.pipe(
   v.string(),
   v.transform(Number),
-  v.integer('Must be an integer string'),
+  v.integer(e => `Must be an integer string, received: ${e.received}`),
 )
 
 /**
@@ -53,7 +53,7 @@ export const intAsString = v.pipe(
  */
 export const numAsString = v.pipe(
   v.string(),
-  v.decimal('Must be a number string'),
+  v.decimal(e => `Must be a number string, received: ${e.received}`),
   v.transform(Number),
 )
 
@@ -65,5 +65,5 @@ export const numAsString = v.pipe(
  */
 export const uuid = v.pipe(
   v.string(),
-  v.uuid(),
+  v.uuid(e => `Must be a valid UUID, received: ${e.received}`),
 )
