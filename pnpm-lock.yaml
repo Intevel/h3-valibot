@@ -14,6 +14,9 @@ importers:
       '@nuxt/schema':
         specifier: ^3.14.1592
         version: 3.14.1592(rollup@3.29.5)
+      confbox:
+        specifier: ^0.1.8
+        version: 0.1.8
       h3:
         specifier: ^1.13.0
         version: 1.13.0
