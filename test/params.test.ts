@@ -1,13 +1,15 @@
 import type { App, Router } from 'h3'
+import type { Test } from 'supertest'
+import type TestAgent from 'supertest/lib/agent'
 import { createApp, createRouter, defineEventHandler, toNodeListener } from 'h3'
 import supertest from 'supertest'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { useSafeValidatedParams, useValidatedParams, v, vh } from '../src'
 
-describe('useValidatedParams', () => {
+describe('params', () => {
   let app: App
   let router: Router
-  let request: any
+  let request: TestAgent<Test>
 
   beforeEach(() => {
     app = createApp({ debug: false })
