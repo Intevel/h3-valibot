@@ -1,4 +1,12 @@
-import { createError, getQuery, getRouterParams, type H3Event, readBody } from 'h3'
+import type { H3Event, InferEventInput } from 'h3'
+import { parseTOML, parseYAML } from 'confbox'
+import {
+  createError,
+  getQuery,
+  getRequestHeader,
+  getRouterParams,
+  readBody as h3ReadBody,
+} from 'h3'
 import * as v from 'valibot'
 
 export type VSchema<TInput, TOutput, TIssue extends v.BaseIssue<unknown>> =
@@ -14,6 +22,21 @@ function createBadRequest(error: any) {
     statusText: DEFAULT_ERROR_MESSAGE,
     data: error,
   })
+}
+
+async function readBody<T, Event extends H3Event = H3Event, _T = InferEventInput<'body', Event, T>>(event: Event): Promise<_T> {
+  const contentType = getRequestHeader(event, 'Content-Type')
+  const body = await h3ReadBody(event)
+
+  if (contentType?.startsWith('application/yaml') || contentType?.startsWith('text/yaml')) {
+    return parseYAML(body)
+  }
+  else if (contentType?.startsWith('application/toml') || contentType?.startsWith('text/toml')) {
+    return parseTOML(body)
+  }
+  else {
+    return body
+  }
 }
 
 /**
@@ -74,6 +97,7 @@ export async function useValidatedBody<
 ): Promise<TOutput> {
   try {
     const body = await readBody(event)
+
     const parsed = await v.parseAsync(schema, body, config)
     return parsed
   }
@@ -96,7 +120,8 @@ export async function useSafeValidatedBody<
   schema: VSchema<TInput, TOutput, TIssue>,
   config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
-  const body = await readBody(event)
+  const body = readBody(event)
+
   return v.safeParseAsync(schema, body, config)
 }
 

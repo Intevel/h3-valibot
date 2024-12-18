@@ -59,6 +59,8 @@
   "dependencies": {
     "@nuxt/kit": "^3.14.1592",
     "@nuxt/schema": "^3.14.1592",
+    "@types/supertest": "^6.0.2",
+    "confbox": "^0.1.8",
     "h3": "^1.13.0",
     "valibot": "^0.42.1"
   },
