@@ -4,7 +4,7 @@ import type TestAgent from 'supertest/lib/agent'
 import { createApp, createRouter, defineEventHandler, toNodeListener } from 'h3'
 import supertest from 'supertest'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { useSafeValidatedParams, useValidatedParams, v, vh } from '../src'
+import { useSafeValidatedParams, useValidatedParams, v } from '../src'
 
 describe('params', () => {
   let app: App
@@ -45,43 +45,14 @@ describe('params', () => {
   })
 
   it('doesn\'t throw 400 Bad Request if params does not match validation schema', async () => {
-    router.get('/validate/:id', defineEventHandler(event => useSafeValidatedParams(event, v.object({
-      id: vh.uuid,
-    }))))
+    const fruitSchema = v.object({
+      name: v.pipe(v.string(), v.picklist(['apple', 'banana', 'cherry'])),
+    })
+    router.get('/validate/:name', defineEventHandler(event => useSafeValidatedParams(event, fruitSchema)))
 
-    const res = await request.get('/validate/2')
+    const res = await request.get('/validate/mango')
 
     expect(res.status).toEqual(200)
-    expect(res.body).toMatchInlineSnapshot(`
-      {
-        "issues": [
-          {
-            "expected": null,
-            "input": "2",
-            "kind": "validation",
-            "message": "Must be a valid UUID, received: "2"",
-            "path": [
-              {
-                "input": {
-                  "id": "2",
-                },
-                "key": "id",
-                "origin": "value",
-                "type": "object",
-                "value": "2",
-              },
-            ],
-            "received": ""2"",
-            "requirement": {},
-            "type": "uuid",
-          },
-        ],
-        "output": {
-          "id": "2",
-        },
-        "success": false,
-        "typed": true,
-      }
-    `)
+    expect(res.body).toEqual(await v.safeParseAsync(fruitSchema, { name: 'mango' }))
   })
 })
