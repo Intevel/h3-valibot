@@ -8,6 +8,6 @@ export {
   type VSchema,
 } from './parsers'
 
-export * as vh from './schemas'
+export * from './schemas'
 
 export * as v from 'valibot'

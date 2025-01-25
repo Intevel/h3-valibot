@@ -3,7 +3,7 @@ import * as v from 'valibot'
 
 /**
  * Valibot schema to parse strings that are booleans.
- * Use to parse <input type="hidden" value="true" /> values.
+ * Use to parse `<input type="hidden" value="true" />` values.
  * @example
  * ```ts
  * v.parse(boolAsString, 'true') -> true
@@ -17,7 +17,7 @@ export const boolAsString = v.pipe(
 
 /**
  * Valibot schema to parse checkbox formdata.
- * Use to parse <input type="checkbox" /> values.
+ * Use to parse `<input type="checkbox" />` values.
  * @example
  * ```ts
  * v.parse(checkboxAsString, 'on') -> true
@@ -31,7 +31,7 @@ export const checkboxAsString = v.optional(v.pipe(
 
 /**
  * Valibot schema to parse strings that are integers.
- * Use to parse  <input type="number" /> values.
+ * Use to parse  `<input type="number" />` values.
  * @example
  * ```ts
  * v.parse(intAsString, '3') -> 3
@@ -45,7 +45,7 @@ export const intAsString = v.pipe(
 
 /**
  * Valibot schema to parse strings that are numbers.
- * Use to parse <input type="number" step="0.1" /> values.
+ * Use to parse `<input type="number" step="0.1" />` values.
  * @example
  * ```ts
  * v.parse(numAsString, '3.14') -> 3.14
@@ -59,7 +59,7 @@ export const numAsString = v.pipe(
 
 /**
  * Valibot schema to parse strings that are dates or datetime in ISO format.
- * Use to parse <input type="date" /> and <input type="datetime-local" /> values.
+ * Use to parse `<input type="date" />` and `<input type="datetime-local" />` values.
  * @example
  * ```ts
  * v.parse(dateAsString, '2022-01-01') -> new Date('2022-01-01')
@@ -101,3 +101,13 @@ export const email = v.pipe(
   v.string(),
   v.email(e => `Must be a valid Email, received: ${e.received}`),
 )
+
+export const vh = {
+  boolAsString,
+  checkboxAsString,
+  intAsString,
+  numAsString,
+  dateAsString,
+  uuid,
+  email,
+}
