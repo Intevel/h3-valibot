@@ -34,33 +34,15 @@ describe('query', () => {
     const res = await request.get('/validate')
 
     expect(res.status).toEqual(400)
-    expect(res.body).toMatchInlineSnapshot(`
-      {
-        "data": {
-          "issues": [
-            {
-              "expected": "string",
-              "kind": "schema",
-              "message": "Invalid type: Expected string but received undefined",
-              "path": [
-                {
-                  "input": {},
-                  "key": "required",
-                  "origin": "value",
-                  "type": "object",
-                },
-              ],
-              "received": "undefined",
-              "type": "string",
-            },
-          ],
-          "name": "ValiError",
-        },
-        "stack": [],
-        "statusCode": 400,
-        "statusMessage": "Bad Request",
-      }
-    `)
+    expect(res.body).toEqual({
+      stack: [],
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      data: {
+        name: 'ValiError',
+        issues: (await v.safeParseAsync(querySchema, {})).issues,
+      },
+    })
   })
 
   it('doesn\'t throw 400 Bad Request if query does not match validation schema', async () => {
