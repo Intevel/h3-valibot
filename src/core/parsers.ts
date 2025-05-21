@@ -18,13 +18,18 @@ const DEFAULT_ERROR_STATUS = 400
 
 function createBadRequest(error: any) {
   return createError({
-    statusCode: DEFAULT_ERROR_STATUS,
-    statusText: DEFAULT_ERROR_MESSAGE,
     data: error,
+    statusCode: DEFAULT_ERROR_STATUS,
+    statusMessage: DEFAULT_ERROR_MESSAGE,
+    message: v.isValiError(error)
+      ? v.summarize(error.issues)
+      : error.message
+        ? error.message
+        : undefined,
   })
 }
 
-async function readBody<T, Event extends H3Event = H3Event, _T = InferEventInput<'body', Event, T>>(event: Event): Promise<_T> {
+export async function parseBody<T, Event extends H3Event = H3Event, _T = InferEventInput<'body', Event, T>>(event: Event): Promise<_T> {
   const contentType = getRequestHeader(event, 'Content-Type')
   const body = await h3ReadBody(event)
 
@@ -96,7 +101,7 @@ export async function useValidatedBody<
   config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<TOutput> {
   try {
-    const body = await readBody(event)
+    const body = await parseBody(event)
 
     const parsed = await v.parseAsync(schema, body, config)
     return parsed
@@ -120,7 +125,7 @@ export async function useSafeValidatedBody<
   schema: VSchema<TInput, TOutput, TIssue>,
   config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
 ): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
-  const body = readBody(event)
+  const body = parseBody(event)
 
   return v.safeParseAsync(schema, body, config)
 }

@@ -43,14 +43,16 @@ export default defineNuxtModule({
     ])
 
     nuxt.hook('imports:extend', (imports) => {
-      imports.push({
-        name: 'vh',
-        from: 'h3-valibot',
-      })
-      imports.push({
-        name: 'v',
-        from: 'h3-valibot',
-      })
+      imports.push(
+        {
+          name: 'vh',
+          from: 'h3-valibot',
+        },
+        {
+          name: 'v',
+          from: 'h3-valibot',
+        },
+      )
     })
   },
 })
