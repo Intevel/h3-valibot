@@ -13,6 +13,10 @@ export default defineNuxtModule({
         from: 'h3-valibot',
       },
       {
+        name: 'useSafeValidatedInput',
+        from: 'h3-valibot',
+      },
+      {
         name: 'useSafeValidatedParams',
         from: 'h3-valibot',
       },
@@ -22,6 +26,10 @@ export default defineNuxtModule({
       },
       {
         name: 'useValidatedBody',
+        from: 'h3-valibot',
+      },
+      {
+        name: 'useValidatedInput',
         from: 'h3-valibot',
       },
       {

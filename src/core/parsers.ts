@@ -130,6 +130,42 @@ export async function useSafeValidatedBody<
   return v.safeParseAsync(schema, body, config)
 }
 
+export async function useValidatedInput<
+  TInput,
+  TOutput,
+  TIssue extends v.BaseIssue<unknown>,
+>(
+  event: H3Event,
+  schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
+): Promise<TOutput> {
+  try {
+    const body = await parseBody(event)
+    const query = getQuery(event)
+
+    const parsed = await v.parseAsync(schema, { ...body, ...query }, config)
+    return parsed
+  }
+  catch (error) {
+    throw createBadRequest(error)
+  }
+}
+
+export async function useSafeValidatedInput<
+  TInput,
+  TOutput,
+  TIssue extends v.BaseIssue<unknown>,
+>(
+  event: H3Event,
+  schema: VSchema<TInput, TOutput, TIssue>,
+  config?: v.Config<v.InferIssue<VSchema<TInput, TOutput, TIssue>>>,
+): Promise<v.SafeParseResult<VSchema<TInput, TOutput, TIssue>>> {
+  const body = await parseBody(event)
+  const query = getQuery(event)
+
+  return v.safeParseAsync(schema, { ...body, ...query }, config)
+}
+
 /**
  * Parse and validate request params from event handler. Throws an error if validation fails.
  * @param event - A H3 event object.
