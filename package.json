@@ -15,6 +15,10 @@
       "types": "./dist/index.d.mts",
       "default": "./dist/index.mjs"
     },
+    "./helpers": {
+      "types": "./dist/helpers.d.mts",
+      "default": "./dist/helpers.mjs"
+    },
     "./nuxt": {
       "types": "./dist/nuxt.d.mts",
       "default": "./dist/nuxt.mjs"

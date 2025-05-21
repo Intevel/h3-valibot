@@ -1,3 +1,5 @@
+export * as vh from './helpers'
+
 export {
   parseBody,
   useSafeValidatedBody,
@@ -10,7 +12,5 @@ export {
   useValidatedQuery,
   type VSchema,
 } from './parsers'
-
-export * as vh from './schemas'
 
 export * as v from 'valibot'
