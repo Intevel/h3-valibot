@@ -6,31 +6,23 @@
   "author": "Conner Bachmann <github@conner-bachmann.de>",
   "license": "MIT",
   "keywords": [
-    "valibot",
     "h3",
+    "valibot",
     "validation"
   ],
-  "sideEffects": false,
-  "build": {
-    "externals": [
-      "valibot"
-    ]
-  },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     },
     "./nuxt": {
-      "types": "./dist/nuxt.d.ts",
-      "import": "./dist/nuxt.mjs",
-      "require": "./dist/nuxt.cjs"
+      "types": "./dist/nuxt.d.mts",
+      "default": "./dist/nuxt.mjs"
     }
   },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
@@ -39,7 +31,7 @@
     "dev": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "release": "pnpm build && changelogen --patch && git push --follow-tags && pnpm publish",
+    "release": "pnpm test && pnpm build && changelogen --patch && git push --follow-tags && pnpm publish",
     "test": "pnpm lint && pnpm test:types && vitest --run",
     "test:types": "tsc --noEmit --skipLibCheck"
   },

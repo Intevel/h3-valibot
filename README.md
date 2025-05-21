@@ -10,12 +10,14 @@ Schema validation for h3 using Valibot 🤖
 ## Install
 
 ```sh
-
 # Using npm
 npm install h3-valibot
 
-# Using yarn
-yarn add h3-valibot
+# Using pnpm
+pnpm install h3-valibot
+
+# Using bun
+bun add h3-valibot
 ```
 
 ## Validation
@@ -62,9 +64,11 @@ router.post("/login", eventHandler(async (event) => {
 `h3-valibot` provides a series of utils and their safe variants (don't throw an h3 error):
 
 - `useValidatedBody`
+- `useValidatedInput`
 - `useValidatedParams`
 - `useValidatedQuery`
 - `useSafeValidatedBody`
+- `useSafeValidatedInput`
 - `useSafeValidatedParams`
 - `useSafeValidatedQuery`
 
