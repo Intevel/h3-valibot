@@ -39,14 +39,14 @@
     "dev": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "release": "yarn build && changelogen --patch && git push --follow-tags && yarn publish",
+    "release": "pnpm build && changelogen --patch && git push --follow-tags && pnpm publish",
     "test": "pnpm lint && pnpm test:types && vitest --run",
     "test:types": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
     "@nuxt/kit": ">=3",
     "@nuxt/schema": ">=3",
-    "valibot": ">=0.42.0 || >=1"
+    "valibot": ">=1"
   },
   "peerDependenciesMeta": {
     "@nuxt/kit": {
@@ -57,13 +57,13 @@
     }
   },
   "dependencies": {
+    "confbox": "^0.2.2",
     "h3": "^1.15.3",
     "valibot": "^1.1.0"
   },
   "optionalDependencies": {
     "@nuxt/kit": "^3.17.4",
-    "@nuxt/schema": "^3.17.4",
-    "confbox": "^0.2.2"
+    "@nuxt/schema": "^3.17.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "4.13.2",
