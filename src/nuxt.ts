@@ -13,6 +13,10 @@ export default defineNuxtModule({
         from: 'h3-valibot',
       },
       {
+        name: 'useSafeValidatedInput',
+        from: 'h3-valibot',
+      },
+      {
         name: 'useSafeValidatedParams',
         from: 'h3-valibot',
       },
@@ -22,6 +26,10 @@ export default defineNuxtModule({
       },
       {
         name: 'useValidatedBody',
+        from: 'h3-valibot',
+      },
+      {
+        name: 'useValidatedInput',
         from: 'h3-valibot',
       },
       {
@@ -43,14 +51,16 @@ export default defineNuxtModule({
     ])
 
     nuxt.hook('imports:extend', (imports) => {
-      imports.push({
-        name: 'vh',
-        from: 'h3-valibot',
-      })
-      imports.push({
-        name: 'v',
-        from: 'h3-valibot',
-      })
+      imports.push(
+        {
+          name: 'vh',
+          from: 'h3-valibot',
+        },
+        {
+          name: 'v',
+          from: 'h3-valibot',
+        },
+      )
     })
   },
 })

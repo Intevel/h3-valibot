@@ -99,15 +99,8 @@ export const uuid = v.pipe(
  */
 export const email = v.pipe(
   v.string(),
+  v.trim(),
+  v.nonEmpty('Please enter your email.'),
   v.email(e => `Must be a valid Email, received: ${e.received}`),
+  v.toLowerCase(),
 )
-
-export const vh = {
-  boolAsString,
-  checkboxAsString,
-  intAsString,
-  numAsString,
-  dateAsString,
-  uuid,
-  email,
-}
