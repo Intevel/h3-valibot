@@ -40,8 +40,8 @@
     "test:types": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
-    "@nuxt/kit": ">=3",
-    "@nuxt/schema": ">=3",
+    "@nuxt/kit": ">=4",
+    "@nuxt/schema": ">=4",
     "valibot": ">=1"
   },
   "peerDependenciesMeta": {
@@ -58,8 +58,8 @@
     "valibot": "^1.2.0"
   },
   "optionalDependencies": {
-    "@nuxt/kit": "^3.17.4",
-    "@nuxt/schema": "^3.17.4"
+    "@nuxt/kit": "^4.2.1",
+    "@nuxt/schema": "^4.2.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "6.2.0",
