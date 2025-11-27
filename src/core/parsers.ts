@@ -9,9 +9,9 @@ import {
 } from 'h3'
 import * as v from 'valibot'
 
-export type VSchema<TInput, TOutput, TIssue extends v.BaseIssue<unknown>> =
-  | v.BaseSchema<TInput, TOutput, TIssue>
-  | v.BaseSchemaAsync<TInput, TOutput, TIssue>
+export type VSchema<TInput, TOutput, TIssue extends v.BaseIssue<unknown>>
+  = | v.BaseSchema<TInput, TOutput, TIssue>
+    | v.BaseSchemaAsync<TInput, TOutput, TIssue>
 
 const DEFAULT_ERROR_MESSAGE = 'Bad Request'
 const DEFAULT_ERROR_STATUS = 400
