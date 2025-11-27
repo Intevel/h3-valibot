@@ -1,7 +1,7 @@
 {
   "name": "h3-valibot",
   "type": "module",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "🤖 Schema validation for h3 using Valibot",
   "author": "Conner Bachmann <github@conner-bachmann.de>",
   "license": "MIT",
